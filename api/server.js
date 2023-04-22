@@ -18,7 +18,7 @@ CREATE TABLE  IF NOT EXISTS screening_subjects (
   campaign_id INTEGER,
   phone_number TEXT,
   email TEXT,
-  name TEXT,
+  name TEXT, 
   pin_number TEXT,
   FOREIGN KEY (campaign_id) REFERENCES campaigns(id)
 );`);
