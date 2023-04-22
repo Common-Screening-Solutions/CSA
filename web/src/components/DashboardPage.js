@@ -39,7 +39,7 @@ function EmployeeList(props) {
   const employees = generateEmployees();
 
   return (
-    <div className="flex flex-col gap-8 mx-auto">
+    <div className="flex flex-col gap-8">
       <div className="flex justify-between items-center mb-6">
         <div className="basis-1/4 grow-0 font-bold text-xl">
           Employees - <span>{employees.length}</span>
