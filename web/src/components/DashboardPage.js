@@ -24,11 +24,8 @@ const generateEmployees = () => {
 
 export default function DashboardPage(props) {
   return (
-    <div className="px-10 m-24">
-      <div className="flex items-center justify-between w-full mb-20">
-        <div className="text-5xl font-medium">Dashboard</div>
-        {/* <div className="text-sm underline">Edit campaign</div> */}
-      </div>
+    <div className="mx-36">
+      <div className="text-5xl font-medium mb-20">Dashboard</div>
       <EmployeeList />
     </div>
   );
@@ -57,7 +54,9 @@ function EmployeeList(props) {
           </div>
           <div className="basis-1/4 grow-0 text-gray-500">{e.email}</div>
           <div className="basis-1/4 grow-0 text-gray-500">{e.phone}</div>
-          <div className={"basis-1/12 grow-0 " + statuses[e.status]}>{e.status}</div>
+          <div className={"basis-1/12 grow-0 " + statuses[e.status]}>
+            {e.status}
+          </div>
         </div>
       ))}
     </div>
