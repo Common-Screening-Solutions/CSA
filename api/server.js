@@ -72,8 +72,12 @@ app.get('/api/get-campaign-data', function (req, res) {
 // POST endpoint for creating a new campaign
 app.post('/api/post-new-campaign', function (req, res) {
   let campaign = req.body;
-  console.log('New campaign:', campaign);
-  res.send('Campaign created successfully');
+  if(req.body.email && req.body.ph && req.body.subjects){
+    console.log('New campaign:', campaign);
+    res.send('').status(201);
+  } else {
+    res.send('Error: malformed request. Better luck next time').status(400);
+  }
 });
 
 // Start the server
