@@ -23,6 +23,10 @@ export default function Navbar(props) {
     navigate("/");
   }
 
+  function home() {
+    navigate("/");
+  }
+
   const user = email ? (
     <div className="flex gap-3 justify-between items-center">
       {localStorage.getItem("email_LS")}
@@ -44,9 +48,15 @@ export default function Navbar(props) {
   return (
     <div className={`top-0 ${mobile ? "mx-4 my-5" : "mx-5 my-9"} select-none`}>
       <div className={`${mobile ? "h-14" : "h-20"} flex items-center relative`}>
-        <Logo className={mobile ? "h-14 w-14" : "h-16 w-16"} />
+        <Logo
+          className={`${mobile ? "h-14 w-14" : "h-16 w-16"} cursor-pointer`}
+          onClick={home}
+        />
         {mobile ? null : (
-          <div className="w-10 text-sm ml-4 text-black font-medium">
+          <div
+            className="w-10 text-sm ml-4 text-black font-medium cursor-pointer"
+            onClick={home}
+          >
             Common Screening Solutions
           </div>
         )}

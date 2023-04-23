@@ -21,7 +21,11 @@ export default function LandingPage(props) {
         draggable={false}
       />
       <div className="mt-9 w-40 fade-up-d opacity-0 exp-hover">
-        <Button text="Get Started" onClick={getStarted} arrow={true} />
+        <Button
+          text={localStorage.getItem("email_LS") ? "Dashboard" : "Get Started"}
+          onClick={getStarted}
+          arrow={true}
+        />
       </div>
     </div>
   );
