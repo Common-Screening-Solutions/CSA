@@ -28,8 +28,6 @@ export default function FormPage(props) {
       status: symptomCount.current < 1 ? "no" : "yes",
     });
 
-    console.log(symptomCount.current)
-
     fetch(
       "https://better-tables-wear-12-38-208-106.loca.lt/api/submit-screen-results",
       {
@@ -60,22 +58,26 @@ export default function FormPage(props) {
       <div className="text-4xl font-medium">Screening Form</div>
       <div className="mt-4 bg-slate-300 h-px w-screen absolute left-0"></div>
       {auth ? (
-        <div className="mt-16 flex flex-col items-center">
-          <div className="text-3xl font-bold mb-8">COVID-19</div>
-          <div className="text-md font-medium text-center mb-10">
+        <div className="mt-10 flex flex-col items-center">
+          <div className="text-3xl font-bold mb-4">COVID-19</div>
+          <div className="text-sm font-medium text-center mb-10">
             Have you experienced any of the following symptoms in the past 7
             days?
           </div>
           {symptoms.map((s) => (
-            <div className="flex justify-between w-full font-medium text-xl mb-6">
+            <div className="flex justify-between w-full font-medium text-md mb-4">
               {s}
-              <input className="w-6" type="checkbox" onChange={(e) => {
-                if (e.target.checked) {
-                  symptomCount.current += 1
-                } else {
-                  symptomCount.current -= 1
-                }
-              }} />
+              <input
+                className="w-6"
+                type="checkbox"
+                onChange={(e) => {
+                  if (e.target.checked) {
+                    symptomCount.current += 1;
+                  } else {
+                    symptomCount.current -= 1;
+                  }
+                }}
+              />
             </div>
           ))}
           <div className="w-3/4 absolute bottom-8">
@@ -84,15 +86,15 @@ export default function FormPage(props) {
         </div>
       ) : (
         <div className="mt-16 flex flex-col items-center">
-          <div className="w-32">
-            <div className="mb-5">
+          <div className="w-48 mb-5">
             <InputField
               onInput={(e) => {
                 setName(e.target.value);
               }}
               placeholder="name"
             />
-            </div>
+          </div>
+          <div className="w-32">
             <InputField
               onInput={(e) => {
                 setCode(e.target.value);

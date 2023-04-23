@@ -7,7 +7,8 @@ export default function Navbar(props) {
 
   const location = useLocation();
   const mobile = location.pathname == "/form";
-  const userHidden = location.pathname == "/login";
+  const userHidden =
+    location.pathname == "/login" || location.pathname == "/form";
 
   return (
     <div className={`top-0 ${mobile ? "mx-4 my-5" : "mx-5 my-9"} select-none`}>
