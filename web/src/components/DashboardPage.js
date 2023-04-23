@@ -36,6 +36,12 @@ export default function DashboardPage(props) {
 function EmployeeList(props) {
   const employees = generateEmployees();
 
+  if(!localStorage.getItem("email_LS")) {
+    window.location.href = "/login"
+  } else if (process.env.api.REACT_APP_API_ROUTE) {
+
+  }
+
   return (
     <div className="flex flex-col gap-0 m-10">
       <div className="flex justify-between items-center mb-6 px-3">
