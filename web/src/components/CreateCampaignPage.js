@@ -10,7 +10,7 @@ export default function CreateCampaignPage(props) {
 
   function newEmployee() {
     const newEmployees = [...employees];
-    newEmployees.push({ email: "", phone: "" });
+    newEmployees.push({ name: "", email: "", phone: "" });
     setEmployees(newEmployees);
   }
 
@@ -41,6 +41,21 @@ export default function CreateCampaignPage(props) {
     </div>
   );
 
+  const Field = ({ field, placeholder, basis, i }) => (
+    <div
+      className={`flex items-center h-8 px-3 ${basis} rounded-lg bg-gray-200 text-gray-800`}
+    >
+      <input
+        className="outline-none text-sm w-full bg-transparent"
+        type="text"
+        placeholder={placeholder}
+        onInput={(e) => {
+          onFieldChange(i, field, e.target.value);
+        }}
+      />
+    </div>
+  );
+
   return (
     <div className="mx-36">
       <div className="text-5xl mb-10">Create Campaign</div>
@@ -54,26 +69,24 @@ export default function CreateCampaignPage(props) {
         {employees.map((e, i) => (
           <div className="flex items-center gap-4">
             <div className="w-6">{i + 1}</div>
-            <div className="flex items-center h-8 px-3 basis-1/3 rounded-lg bg-gray-200 text-gray-800">
-              <input
-                className="outline-none text-sm w-full bg-transparent"
-                type="text"
-                placeholder="example@gmail.com"
-                onInput={(e) => {
-                  onFieldChange(i, "email", e.target.value);
-                }}
-              />
-            </div>
-            <div className="flex items-center h-8 px-3 basis-1/6 rounded-lg bg-gray-200 text-gray-800">
-              <input
-                className="outline-none text-sm w-full bg-transparent"
-                type="text"
-                placeholder="###-###-####"
-                onInput={(e) => {
-                  onFieldChange(i, "phone", e.target.value);
-                }}
-              />
-            </div>
+            <Field
+              field="name"
+              placeholder="John Doe"
+              basis="basis-1/6"
+              i={i}
+            />
+            <Field
+              field="email"
+              placeholder="example@gmail.com"
+              basis="basis-1/3"
+              i={i}
+            />
+            <Field
+              field="phone"
+              placeholder="###-###-####"
+              basis="basis-1/6"
+              i={i}
+            />
             <Delete className="h-6" onClick={() => deleteEmployee(i)} />
           </div>
         ))}
