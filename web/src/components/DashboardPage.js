@@ -49,7 +49,7 @@ function EmployeeList(props) {
   // }
 
   return (
-    <div className="flex flex-col gap-0 m-10 max-h-[46vh] overflow-y-scroll overflow-x-hidden">
+    <div className="flex flex-col gap-0 m-10 max-h-[40vh] overflow-y-scroll overflow-x-hidden">
       {employees.map((e) => (
         <div className="flex items-center justify-between py-7 px-3 pr-12 rounded-l-2xl transition-all hover:bg-slate-100">
           <div className="basis-1/4 grow-0 select-none">
