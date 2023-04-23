@@ -61,14 +61,14 @@ app.get('/api/get-campaign-data', function (req, res) {
 
   if(campaign !== null) {
     const subjects_query = db.query(`SELECT * FROM screening_subjects`);
-    // WHERE campaign_id = ${campaign.id}`); 
+    // WHERE campaign_id = ${campaign.id}`);
     const subjects = subjects_query.all();
     // const sb2 = subjects_query.get();
     
     // console.log(subjects)
     res.send({subjects,campaign}).status(200);
   } else {
-    res.send("").status(404);
+    res.send().status(404);
   }
 });
 
@@ -76,12 +76,23 @@ app.get('/api/get-campaign-data', function (req, res) {
 app.post('/api/post-new-campaign', function (req, res) {
   let campaign = req.body;
   if(req.body.email && req.body.ph && req.body.subjects){
-    console.log('New campaign:', campaign);
+    console.log('New campaign request:', campaign);
+
+    db.run(`
+    INSERT INTO campaigns (email, pass_hash)
+    VALUES ('${req.body.email}', '${req.body.ph}');
+    `);
+    
 
     res.send().status(201);
   } else {
     res.send('Error: malformed request. Better luck next time').status(400);
   }
+});
+
+// POST endpoint for submitting your screening results
+app.post('/api/submit-screen-results', function (req, res) {
+
 });
 
 // Start the server
