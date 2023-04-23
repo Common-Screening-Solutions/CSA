@@ -11,6 +11,50 @@
         scrollbar-width: none;
     }
 
+    .fade-right {
+        animation-name: fade-right;
+        animation-duration: 1s;
+        animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+        animation-fill-mode: forwards;
+    }
+
+    .fade-up {
+        animation-name: fade-up;
+        animation-duration: 1s;
+        animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+        animation-fill-mode: forwards;
+    }
+
+    .fade-up-d {
+        animation-name: fade-up;
+        animation-duration: 1s;
+        animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+        animation-fill-mode: forwards;
+        animation-delay: 100ms;
+    }
+
+    @keyframes fade-right {
+        from {
+            translate: -100px;
+            opacity: 0;
+        }
+        to {
+            translate: 0px;
+            opacity: 1;
+        }
+    }
+
+    @keyframes fade-up {
+        from {
+            translate: 0px 100px;
+            opacity: 0;
+        }
+        to {
+            translate: 0px;
+            opacity: 1;
+        }
+    }
+
     ::-webkit-scrollbar {
         width: 5px;
     }

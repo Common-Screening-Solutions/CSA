@@ -10,8 +10,8 @@ export default function LandingPage(props) {
         Digital Health Screening <br />
         Done Right
       </div>
-      <img src={landingImg} className="h-96 select-none" draggable={false} />
-      <div className="mt-6 w-40">
+      <img src={landingImg} className="h-96 select-none fade-up opacity-0" draggable={false} />
+      <div className="mt-9 w-40 fade-up-d opacity-0">
         <Button text="Get Started" onClick={getStarted} arrow={true} />
       </div>
     </div>
