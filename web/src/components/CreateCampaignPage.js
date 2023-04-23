@@ -4,11 +4,13 @@ import { ReactComponent as Delete } from "../assets/delete.svg";
 import Dropdown from "./Dropdown.js";
 import InputField from "./InputField.js";
 import Button from "./Button.js";
+import {useNavigate} from "react-router-dom"
 
 export default function CreateCampaignPage(props) {
   const [employees, setEmployees] = useState([]);
   const [interval, setInterval] = useState("Daily");
   const [intervalDay, setIntervalDay] = useState("Monday");
+  const navigate = useNavigate();
 
   function newEmployee() {
     const newEmployees = [...employees];
@@ -29,7 +31,35 @@ export default function CreateCampaignPage(props) {
   }
 
   function submit() {
-    
+    const body = JSON.stringify({
+      email: localStorage.getItem("email_LS"),
+      ph: localStorage.getItem("password_LS"),
+      subjects: 
+        employees.map(emp => {
+          return {
+            name: emp.name,
+            email: emp.email,
+            phone: emp.phone
+          }
+        })
+      
+    });
+
+    console.log(body)
+
+    fetch(
+      "https://better-tables-wear-12-38-208-106.loca.lt/api/post-new-campaign",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: body,
+      }
+    );
+
+    navigate('/dashboard')
   }
 
   const IntervalButton = ({ text }) => (
@@ -93,7 +123,9 @@ export default function CreateCampaignPage(props) {
           New
         </div>
       </div>
-      <div className="text-xl font-bold mb-5 cursor-default">Screening Interval</div>
+      <div className="text-xl font-bold mb-5 cursor-default">
+        Screening Interval
+      </div>
       <div className="flex items-center">
         <div className="flex rounded-lg overflow-hidden w-48 border-2 border-current text-gray-900 cursor-default">
           <IntervalButton text="Daily" />

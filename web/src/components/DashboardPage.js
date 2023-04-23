@@ -2,6 +2,7 @@ import { faker } from "@faker-js/faker";
 import { ReactComponent as Circle } from "../assets/circle.svg";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ReactComponent as Add } from "../assets/add.svg";
 
 const statuses = {
   yes: ["text-red-500", "symptoms"],
@@ -53,12 +54,13 @@ export default function DashboardPage(props) {
 
   console.log(data)
   if (data == null) { return <div></div>}
-  else if(data == {}){
+  else if(data.error){
     return (
         <div className="mx-36 m-12">
-          <div className="text-5xl font-medium mb-20">Dashboard</div>
-          <div className="flex justify-between items-center mb-6 px-3 mx-10 pr-[54px]" onClick={createCampaign}>
-            Create a campaign
+          <div className="text-5xl font-medium mb-1">Dashboard</div>
+          <div className="mx-1 mb-20 text-slate-700">No campaign found</div>
+          <div className="flex justify-between items-center mb-6 px-3 py-5 mx-1 bg-slate-200 w-fit text-center rounded-md drop-shadow-lg cursor-pointer hover:scale-105 transition-all" onClick={createCampaign}>
+            <Add/>Create a campaign
           </div>
         </div> 
     )
