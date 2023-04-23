@@ -36,11 +36,11 @@ export default function DashboardPage(props) {
 function EmployeeList(props) {
   const employees = generateEmployees();
 
-  if(!localStorage.getItem("email_LS")) {
-    window.location.href = "/login"
-  } else if (process.env.api.REACT_APP_API_ROUTE) {
+  // if(!localStorage.getItem("email_LS")) {
+  //   window.location.href = "/login"
+  // } else if (process.env.api.REACT_APP_API_ROUTE) {
 
-  }
+  // }
 
   return (
     <div className="flex flex-col gap-0 m-10">
@@ -54,15 +54,15 @@ function EmployeeList(props) {
       </div>
       {employees.map((e) => (
         <div className="flex items-center justify-between py-7 px-3 rounded-2xl transition-all hover:bg-slate-200">
-          <div className="basis-1/4 grow-0">
+          <div className="basis-1/4 grow-0 select-none">
             <div className="flex gap-3 items-center font-bold">
               <Circle className="h-10" />
               {e.name}
             </div>
           </div>
-          <div className="basis-1/4 grow-0 text-gray-500">{e.email}</div>
-          <div className="basis-1/4 grow-0 text-gray-500">{e.phone}</div>
-          <div className={"basis-1/12 grow-0 " + statuses[e.status]}>
+          <div className="basis-1/4 grow-0 text-gray-500 select-none">{e.email}</div>
+          <div className="basis-1/4 grow-0 text-gray-500 select-none">{e.phone}</div>
+          <div className={"basis-1/12 grow-0 select-none " + statuses[e.status]}>
             {e.status}
           </div>
         </div>
