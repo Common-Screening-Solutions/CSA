@@ -10,7 +10,7 @@ function App() {
   return (
     <BrowserRouter>
       <div>
-        <Navbar mobile={true} signedIn={true} userHidden={false} />
+        <Navbar />
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/dashboard" element={<DashboardPage />} />

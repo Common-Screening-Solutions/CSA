@@ -1,12 +1,14 @@
 import { ReactComponent as Logo } from "../assets/logo.svg";
 import { ReactComponent as Account } from "../assets/account.svg";
+import { useLocation } from "react-router-dom";
 
-export default function Navbar({
-  mobile = false,
-  // signedIn = true,
-  userHidden = false,
-}) {
-  let signedIn = localStorage.getItem("email_LS")
+export default function Navbar(props) {
+  const signedIn = localStorage.getItem("email_LS");
+
+  const location = useLocation();
+  const mobile = location.pathname == "/form";
+  const userHidden = location.pathname == "/login";
+
   return (
     <div className={`top-0 ${mobile ? "mx-4 my-5" : "mx-5 my-9"} select-none`}>
       <div className={`${mobile ? "h-14" : "h-20"} flex items-center relative`}>

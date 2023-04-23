@@ -1,6 +1,7 @@
 import Button from "./Button.js";
 import InputField from "./InputField.js";
 import { useState } from "react";
+import { ReactComponent as Check } from "../assets/check.svg";
 
 const symptoms = [
   "Coughing",
@@ -14,11 +15,20 @@ const symptoms = [
 export default function FormPage(props) {
   const [code, setCode] = useState("");
   const [auth, setAuth] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
-  function submit() {}
+  function submit() {
+    setSubmitted(true);
+  }
 
   function tryAuth() {
     setAuth(true);
+  }
+
+  if (submitted) {
+    return (
+      <Check className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 fill-green-500" />
+    );
   }
 
   return (
