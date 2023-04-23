@@ -14,7 +14,7 @@ export default function Navbar(props) {
       <div className={`${mobile ? "h-14" : "h-20"} flex items-center relative`}>
         <Logo className={mobile ? "h-14 w-14" : "h-16 w-16"} />
         {mobile ? null : (
-          <div className="w-10 text-sm ml-1 text-black font-medium">
+          <div className="w-10 text-sm ml-4 text-black font-medium">
             Common Screening Solutions
           </div>
         )}
