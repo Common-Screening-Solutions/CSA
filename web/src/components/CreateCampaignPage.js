@@ -91,24 +91,31 @@ export default function CreateCampaignPage(props) {
           <IntervalButton text="Daily" />
           <IntervalButton text="Weekly" />
         </div>
-        <div className="ml-8 text-gray-600 text-sm">Every:</div>
-        <Dropdown
-          width="w-30"
-          value={intervalDay}
-          setValue={setIntervalDay}
-          menuItems={[
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday",
-            "Saturday",
-            "Sunday",
-          ]}
-        />
+        {interval === "Weekly" ? (
+          <div className="flex items-center">
+            <div className="ml-8 text-gray-600 text-sm">Every:</div>
+            <Dropdown
+              width="w-30"
+              value={intervalDay}
+              setValue={setIntervalDay}
+              menuItems={[
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+                "Sunday",
+              ]}
+            />
+          </div>
+        ) : null}
       </div>
-      <button className="absolute mt-10" onClick={submit}>
-        submit
+      <button
+        className="absolute bottom-12 bg-gray-900 text-white rounded-lg h-10 w-32 shadow-lg"
+        onClick={submit}
+      >
+        Create
       </button>
     </div>
   );

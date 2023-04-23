@@ -10,7 +10,7 @@ function App() {
     <BrowserRouter>
       <div>
         <Navbar />
-        <div className="m-12 relative">
+        <div className="m-12">
           <Routes>
             <Route path="/" element={<DashboardPage />} />
             <Route path="/create-campaign" element={<CreateCampaignPage />} />

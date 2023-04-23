@@ -30,7 +30,7 @@ export default function Dropdown({
       }}
     >
       <button
-        className={`z-10 p-1 px-2 text-sm flex items-center justify-between text-black hover:underline`}
+        className={`z-10 p-1 px-2 text-sm flex items-center text-black hover:underline`}
         // ${
         //   open
         //     ? " bg-opacity-50 hover:bg-opacity-100"
@@ -40,7 +40,7 @@ export default function Dropdown({
         onClick={() => setOpen(!open)}
       >
         {value}
-        <Expand className="h-4" />
+        <Expand className="ml-2 h-4 w-4" />
       </button>
       {open ? (
         <ul
