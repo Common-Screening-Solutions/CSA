@@ -9,7 +9,8 @@ const db = new Database("campaign-data.sqlite", { create: true });
 db.run(`CREATE TABLE IF NOT EXISTS campaigns (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   email TEXT,
-  pass_hash TEXT
+  pass_hash TEXT,
+  UNIQUE(email, pass_hash)
 );`);
 
 db.run(`
@@ -23,27 +24,6 @@ CREATE TABLE  IF NOT EXISTS screening_subjects (
   screen_status TEXT,
   FOREIGN KEY (campaign_id) REFERENCES campaigns(id)
 );`);
-
-// db.run(`
-// INSERT INTO campaigns (email, pass_hash)
-// VALUES ('dnl@dlnd.org', '321312312324233423');
-// `);
-
-// db.run(`
-// -- Get the ID of the newly added campaign
-// SELECT id FROM campaigns WHERE email = 'dnl@dlnd.org';
-// `);
-
-// db.run(`
-// -- Insert user data
-// INSERT INTO screening_subjects (campaign_id, name, phone_number, email, pin_number)
-// VALUES (1, 'Martha', '03429204', 'ajdeij@djaijd.com', '0923');
-// `);
-
-// db.run(`
-// INSERT INTO screening_subjects (campaign_id, name, phone_number, email, pin_number)
-// VALUES (1, 'Mart', '034234', 'dsaij@dd.com', '1234');
-// `);
 
 app.use(bodyParser.json());
 
@@ -82,6 +62,24 @@ app.post('/api/post-new-campaign', function (req, res) {
     INSERT INTO campaigns (email, pass_hash)
     VALUES ('${req.body.email}', '${req.body.ph}');
     `);
+
+    const id_query = db.query(`SELECT MAX(ID) FROM campaigns;`);
+    const id = id_query.get()["MAX(ID)"];
+    // console.log(id)
+
+
+    req.body.subjects.forEach(subject => {
+      db.run(`
+      INSERT INTO screening_subjects (campaign_id, name, phone_number, email, pin_number, screen_status)
+      VALUES (${id}, '${subject.name}', '${subject.phone}', '${subject.email}', '${Math.floor(1000 + Math.random() * 9000)}', null);
+      `);
+    });
+
+   // db.run(`
+// -- Insert user data
+// INSERT INTO screening_subjects (campaign_id, name, phone_number, email, pin_number)
+// VALUES (1, 'Martha', '03429204', 'ajdeij@djaijd.com', '0923');
+// `);
     
 
     res.send().status(201);
