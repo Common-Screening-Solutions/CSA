@@ -63,7 +63,7 @@ app.get('/api/get-campaign-data', function (req, res) {
     // const sb2 = subjects_query.get();
     
     // console.log(subjects)
-    res.send(subjects).status(200);
+    res.send({subjects,campaign}).status(200);
   } else {
     res.send("").status(404);
   }
@@ -74,7 +74,8 @@ app.post('/api/post-new-campaign', function (req, res) {
   let campaign = req.body;
   if(req.body.email && req.body.ph && req.body.subjects){
     console.log('New campaign:', campaign);
-    res.send('').status(201);
+
+    res.send().status(201);
   } else {
     res.send('Error: malformed request. Better luck next time').status(400);
   }
