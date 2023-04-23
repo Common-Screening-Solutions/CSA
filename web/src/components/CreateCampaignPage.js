@@ -45,10 +45,10 @@ export default function CreateCampaignPage(props) {
 
   return (
     <div className="mx-36 m-12">
-      <div className="text-5xl mb-10">Create Campaign</div>
+      <div className="text-5xl mb-10 cursor-default">Create Campaign</div>
       <div className="flex items-center mb-5">
-        <div className="text-xl font-bold">Employees</div>
-        <div className="ml-6 underline text-xs text-gray-500">
+        <div className="text-xl font-bold cursor-default">Employees</div>
+        <div className="ml-6 underline text-xs text-gray-500 cursor-pointer">
           Or import from excel...
         </div>
       </div>
@@ -84,16 +84,16 @@ export default function CreateCampaignPage(props) {
           </div>
         ))}
         <div
-          className="ml-6 flex gap-1 items-center text-sm"
+          className="ml-6 flex gap-1 items-center text-sm bg-slate-200 w-fit p-2 pl-0 pr-5 rounded-md cursor-pointer"
           onClick={newEmployee}
         >
           <Add className="h-6" />
           New
         </div>
       </div>
-      <div className="text-xl font-bold mb-5">Screening Interval</div>
+      <div className="text-xl font-bold mb-5 cursor-default">Screening Interval</div>
       <div className="flex items-center">
-        <div className="flex rounded-lg overflow-hidden w-48 border-2 border-current text-gray-900">
+        <div className="flex rounded-lg overflow-hidden w-48 border-2 border-current text-gray-900 cursor-default">
           <IntervalButton text="Daily" />
           <IntervalButton text="Weekly" />
         </div>
