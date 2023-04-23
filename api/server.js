@@ -1,8 +1,35 @@
 import { Database } from "bun:sqlite";
+require('dotenv').config();
+
 const express = require('express');
 const bodyParser = require('body-parser');
 
 const app = express();
+
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
+const twilioPhone = process.env.TWILIO_PHONE_NUMBER;
+
+async function send_sms(to, msg) {
+  const options = {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        Authorization: `Basic ${Buffer.from(`${accountSid}:${authToken}`).toString('base64')}`
+    },
+    body: `From=${twilioPhone}&To=${to}&Body=${encodeURIComponent(msg)}`
+};
+  await fetch("https://api.twilio.com/2010-04-01/Accounts/ACa6399cb836ecb1081a36eab0529d7b29/Messages.json", options);
+}
+
+
+
+
+
+
+
+
+
 
 const db = new Database("campaign-data.sqlite", { create: true });
 
@@ -11,12 +38,12 @@ db.run(`CREATE TABLE IF NOT EXISTS campaigns (
   email TEXT,
   pass_hash TEXT,
   UNIQUE(email, pass_hash)
-);`);
-
-db.run(`
-CREATE TABLE  IF NOT EXISTS screening_subjects (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  campaign_id INTEGER,
+  );`);
+  
+  db.run(`
+  CREATE TABLE  IF NOT EXISTS screening_subjects (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    campaign_id INTEGER,
   phone_number TEXT,
   email TEXT,
   name TEXT, 
@@ -73,7 +100,10 @@ app.post('/api/post-new-campaign', function (req, res) {
       INSERT INTO screening_subjects (campaign_id, name, phone_number, email, pin_number, screen_status)
       VALUES (${id}, '${subject.name}', '${subject.phone}', '${subject.email}', '${Math.floor(1000 + Math.random() * 9000)}', null);
       `);
+
     });
+
+    
 
    // db.run(`
 // -- Insert user data
