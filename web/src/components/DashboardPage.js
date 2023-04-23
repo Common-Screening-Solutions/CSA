@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const statuses = {
-  yes: ["text-green-500", "symptoms"],
+  yes: ["text-red-500", "symptoms"],
   none: ["text-slate-400", "pending"],
-  no: ["text-red-500", "okay"],
+  no: ["text-green-500", "okay"],
 };
 
 const generateEmployees = () => {
@@ -24,7 +24,7 @@ const generateEmployees = () => {
   return employees;
 };
 
-const apiUrl = `http://better-tables-wear-12-38-208-106.loca.lt/api/get-campaign-data?email=ajith@gmail.org&ph=DEV`;
+const apiUrl = `http://better-tables-wear-12-38-208-106.loca.lt/api/get-campaign-data?email=${localStorage.getItem("email_LS")}&ph=${localStorage.getItem("password_LS")}`;
 const API_ROOT = "http://better-tables-wear-12-38-208-106.loca.lt/api/";
 
 export default function DashboardPage(props) {
@@ -57,7 +57,7 @@ export default function DashboardPage(props) {
         <div className="text-5xl font-medium mb-20">Dashboard</div>
         <div className="flex justify-between items-center mb-6 px-3 mx-10 pr-[54px]">
           <div className="basis-1/4 grow-0 font-semibold text-xl">
-            Employees - <span className="font-thin">10</span>
+            Employees - <span className="font-thin">{data.subjects.length}</span>
           </div>
           <div className="basis-1/4 grow-0 text-sm">Email</div>
           <div className="basis-1/4 grow-0 text-sm">Phone</div>
@@ -82,7 +82,7 @@ function EmployeeList({data}) {
   const employees = data.subjects;
   // console.log(data)
   return (
-    <div className="flex flex-col gap-0 m-10 max-h-[40vh] overflow-y-scroll overflow-x-hidden">
+    <div className="flex flex-col gap-0 m-10 max-h-[45vh] overflow-y-scroll overflow-x-hidden">
       {employees.map((e) => (
         <div className="flex items-center justify-between py-7 px-3 pr-12 rounded-l-2xl transition-all hover:bg-slate-100">
           <div className="basis-1/4 grow-0 select-none">

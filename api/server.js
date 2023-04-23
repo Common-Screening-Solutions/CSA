@@ -68,7 +68,7 @@ app.get('/api/get-campaign-data', function (req, res) {
   const campaign_query = db.query(`SELECT * FROM campaigns WHERE email='${req.query.email}' AND pass_hash = '${req.query.ph}'`);
   const campaign = campaign_query.get();
 
-  console.log(req.query)
+  console.log("WHAT", req.query)
 
   if(campaign !== null) {
     const subjects_query = db.query(`SELECT * FROM screening_subjects WHERE campaign_id = ${campaign.id}`);

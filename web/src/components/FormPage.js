@@ -1,6 +1,6 @@
 import Button from "./Button.js";
 import InputField from "./InputField.js";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { ReactComponent as Check } from "../assets/check.svg";
 
 const symptoms = [
@@ -14,11 +14,35 @@ const symptoms = [
 
 export default function FormPage(props) {
   const [code, setCode] = useState("");
+  const [name, setName] = useState("");
   const [auth, setAuth] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const symptomCount = useRef(0);
 
   function submit() {
     setSubmitted(true);
+
+    const body = JSON.stringify({
+      name: name,
+      pin: parseInt(code),
+      status: symptomCount.current < 1 ? "no" : "yes",
+    });
+
+    console.log(symptomCount.current)
+
+    fetch(
+      "https://better-tables-wear-12-38-208-106.loca.lt/api/submit-screen-results",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: body,
+      }
+    );
+
+    console.log(body);
   }
 
   function tryAuth() {
@@ -45,7 +69,13 @@ export default function FormPage(props) {
           {symptoms.map((s) => (
             <div className="flex justify-between w-full font-medium text-xl mb-6">
               {s}
-              <input className="w-6" type="checkbox" />
+              <input className="w-6" type="checkbox" onChange={(e) => {
+                if (e.target.checked) {
+                  symptomCount.current += 1
+                } else {
+                  symptomCount.current -= 1
+                }
+              }} />
             </div>
           ))}
           <div className="w-3/4 absolute bottom-8">
@@ -55,6 +85,14 @@ export default function FormPage(props) {
       ) : (
         <div className="mt-16 flex flex-col items-center">
           <div className="w-32">
+            <div className="mb-5">
+            <InputField
+              onInput={(e) => {
+                setName(e.target.value);
+              }}
+              placeholder="name"
+            />
+            </div>
             <InputField
               onInput={(e) => {
                 setCode(e.target.value);

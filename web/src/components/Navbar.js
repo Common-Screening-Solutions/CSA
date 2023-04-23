@@ -20,7 +20,7 @@ export default function Navbar(props) {
         )}
         {userHidden ? null : (
           <div className="flex gap-3 absolute top-0 right-0 justify-between items-center hover:underline cursor-pointer">
-            {signedIn ? "John Doe" : "Sign In"}
+            {signedIn ? localStorage.getItem("email_LS") : "Sign In"}
             <Account className="w-10 h-10" />
           </div>
         )}
