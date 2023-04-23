@@ -2,3 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@layer utilities {
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .no-scrollbar {
+        scrollbar-width: none;
+    }
+
+    ::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: #f1f5f9;
+        border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        /* background-color: #e2e8f0; */
+        background-color: #5b5b5b;
+        border-radius: 5px;
+    }
+}
