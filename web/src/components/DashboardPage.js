@@ -1,10 +1,12 @@
 import { faker } from "@faker-js/faker";
 import { ReactComponent as Circle } from "../assets/circle.svg";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const statuses = {
-  ok: "text-green-500",
-  pending: "text-slate-400",
-  symptoms: "text-red-500",
+  yes: ["text-green-500", "symptoms"],
+  none: ["text-slate-400", "pending"],
+  no: ["text-red-500", "okay"],
 };
 
 const generateEmployees = () => {
@@ -22,32 +24,63 @@ const generateEmployees = () => {
   return employees;
 };
 
+const apiUrl = `http://better-tables-wear-12-38-208-106.loca.lt/api/get-campaign-data?email=ajith@gmail.org&ph=DEV`;
+const API_ROOT = "http://better-tables-wear-12-38-208-106.loca.lt/api/";
+
 export default function DashboardPage(props) {
-  return (
-    <div className="mx-36 m-12">
-      <div className="text-5xl font-medium mb-20">Dashboard</div>
-      <div className="flex justify-between items-center mb-6 px-3 mx-10 pr-[54px]">
-        <div className="basis-1/4 grow-0 font-semibold text-xl">
-          Employees - <span className="font-thin">10</span>
-        </div>
-        <div className="basis-1/4 grow-0 text-sm">Email</div>
-        <div className="basis-1/4 grow-0 text-sm">Phone</div>
-        <div className="basis-1/12 grow-0 text-sm">Status</div>
-      </div>
-      <EmployeeList />
-    </div>
-  );
-}
+  const [data, setData] = useState(null);
+  const navigate = useNavigate();
 
-function EmployeeList(props) {
-  const employees = generateEmployees();
+  useEffect(() => {
+    if(!localStorage.getItem("email_LS")){window.location.href="/login"}
+    fetch(apiUrl)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("HEHERE", data);
+        // alert(1)
+        setData(data);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }, []);
 
-  // if(!localStorage.getItem("email_LS")) {
-  //   window.location.href = "/login"
-  // } else if (process.env.api.REACT_APP_API_ROUTE) {
 
+  function createCampaign() {
+    navigate("/create-campaign")
+  }
   // }
 
+  if(data != null){
+    return (
+      <div className="mx-36 m-12">
+        <div className="text-5xl font-medium mb-20">Dashboard</div>
+        <div className="flex justify-between items-center mb-6 px-3 mx-10 pr-[54px]">
+          <div className="basis-1/4 grow-0 font-semibold text-xl">
+            Employees - <span className="font-thin">10</span>
+          </div>
+          <div className="basis-1/4 grow-0 text-sm">Email</div>
+          <div className="basis-1/4 grow-0 text-sm">Phone</div>
+          <div className="basis-1/12 grow-0 text-sm">Status</div>
+        </div>
+        <EmployeeList data={data}/>
+      </div>
+    );
+  } else {
+    return (
+        <div className="mx-36 m-12">
+          <div className="text-5xl font-medium mb-20">Dashboard</div>
+          <div className="flex justify-between items-center mb-6 px-3 mx-10 pr-[54px]" onClick={createCampaign}>
+            Create a campaign
+          </div>
+        </div> 
+    )
+  }
+}
+
+function EmployeeList({data}) {
+  const employees = data.subjects;
+  // console.log(data)
   return (
     <div className="flex flex-col gap-0 m-10 max-h-[40vh] overflow-y-scroll overflow-x-hidden">
       {employees.map((e) => (
@@ -62,12 +95,12 @@ function EmployeeList(props) {
             {e.email}
           </div>
           <div className="basis-1/4 grow-0 text-gray-500 select-none">
-            {e.phone}
+            {e.phone_number}
           </div>
           <div
-            className={"basis-1/12 grow-0 select-none " + statuses[e.status]}
+            className={"basis-1/12 grow-0 select-none " + statuses[e.screen_status][0]}
           >
-            {e.status}
+            {statuses[e.screen_status][1]}
           </div>
         </div>
       ))}

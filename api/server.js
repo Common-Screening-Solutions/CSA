@@ -1,11 +1,14 @@
 import { Database } from "bun:sqlite";
 import { get } from "http";
+var cors = require('cors')
+
 require('dotenv').config();
 
 const express = require('express');
 const bodyParser = require('body-parser');
 
 const app = express();
+app.use(cors())
 
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
@@ -68,7 +71,7 @@ app.get('/api/get-campaign-data', function (req, res) {
   console.log(req.query)
 
   if(campaign !== null) {
-    const subjects_query = db.query(`SELECT * FROM screening_subjects`);
+    const subjects_query = db.query(`SELECT * FROM screening_subjects WHERE campaign_id = ${campaign.id}`);
     // WHERE campaign_id = ${campaign.id}`);
     const subjects = subjects_query.all();
     // const sb2 = subjects_query.get();
@@ -76,7 +79,7 @@ app.get('/api/get-campaign-data', function (req, res) {
     // console.log(subjects)
     res.send({subjects,campaign}).status(200);
   } else {
-    res.send().status(404);
+    res.send({}).status(404);
   }
 });
 
@@ -99,7 +102,7 @@ app.post('/api/post-new-campaign', function (req, res) {
     req.body.subjects.forEach(subject => {
       db.run(`
       INSERT INTO screening_subjects (campaign_id, name, phone_number, email, pin_number, screen_status)
-      VALUES (${id}, '${subject.name}', '${subject.phone}', '${subject.email}', '${Math.floor(1000 + Math.random() * 9000)}', null);
+      VALUES (${id}, '${subject.name}', '${subject.phone}', '${subject.email}', '${Math.floor(1000 + Math.random() * 9000)}', "none");
       `);
 
     });

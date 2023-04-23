@@ -6,7 +6,11 @@ export default function LoginPage(props) {
   const email = useRef("");
   const password = useRef("");
 
-  function login() {}
+  function login() {
+    localStorage.setItem("email_LS", email.current);
+    localStorage.setItem("password_LS", password.current);
+    window.location.href = "/dashboard";
+  }
 
   return (
     <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 flex flex-col items-center">
