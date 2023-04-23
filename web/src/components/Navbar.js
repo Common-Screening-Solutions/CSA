@@ -3,9 +3,10 @@ import { ReactComponent as Account } from "../assets/account.svg";
 
 export default function Navbar({
   mobile = false,
-  signedIn = true,
+  // signedIn = true,
   userHidden = false,
 }) {
+  let signedIn = localStorage.getItem("email_LS")
   return (
     <div className={`top-0 ${mobile ? "mx-4 my-5" : "mx-5 my-9"} select-none`}>
       <div className={`${mobile ? "h-14" : "h-20"} flex items-center relative`}>
