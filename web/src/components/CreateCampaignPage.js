@@ -3,6 +3,7 @@ import { ReactComponent as Add } from "../assets/add.svg";
 import { ReactComponent as Delete } from "../assets/delete.svg";
 import Dropdown from "./Dropdown.js";
 import InputField from "./InputField.js";
+import Button from "./Button.js";
 
 export default function CreateCampaignPage(props) {
   const [employees, setEmployees] = useState([]);
@@ -43,7 +44,7 @@ export default function CreateCampaignPage(props) {
   );
 
   return (
-    <div className="mx-36">
+    <div className="mx-36 m-12">
       <div className="text-5xl mb-10">Create Campaign</div>
       <div className="flex items-center mb-5">
         <div className="text-xl font-bold">Employees</div>
@@ -116,12 +117,9 @@ export default function CreateCampaignPage(props) {
           </div>
         ) : null}
       </div>
-      <button
-        className="absolute bottom-12 bg-gray-900 text-white rounded-lg h-10 w-32 shadow-lg"
-        onClick={submit}
-      >
-        Create
-      </button>
+      <div className="absolute bottom-12 w-32">
+        <Button text="Create" onClick={submit} />
+      </div>
     </div>
   );
 }
