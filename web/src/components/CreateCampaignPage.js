@@ -59,6 +59,9 @@ export default function CreateCampaignPage(props) {
       }
     );
 
+    setTimeout(() => {
+      document.location.href = document.location.href
+    }, 1000);
     navigate('/dashboard')
   }
 
@@ -106,7 +109,7 @@ export default function CreateCampaignPage(props) {
             </div>
             <div className="basis-1/6">
               <InputField
-                placeholder="###-###-####"
+                placeholder="##########"
                 onInput={(e) => {
                   onFieldChange(i, "phone", e.target.value);
                 }}
