@@ -10,16 +10,14 @@ function App() {
   return (
     <BrowserRouter>
       <div>
-        <Navbar signedIn={false} userHidden={false} />
-        <div className="m-12">
-          <Routes>
-            <Route path="/" element={<LandingPage />} />
-            <Route path="/dashboard" element={<DashboardPage />} />
-            <Route path="/create-campaign" element={<CreateCampaignPage />} />
-            <Route path="/form" element={<FormPage />} />
-            <Route path="/login" element={<LoginPage />} />
-          </Routes>
-        </div>
+        <Navbar mobile={true} signedIn={true} userHidden={false} />
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/create-campaign" element={<CreateCampaignPage />} />
+          <Route path="/form" element={<FormPage />} />
+          <Route path="/login" element={<LoginPage />} />
+        </Routes>
       </div>
     </BrowserRouter>
   );

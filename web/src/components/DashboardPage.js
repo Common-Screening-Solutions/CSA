@@ -24,7 +24,7 @@ const generateEmployees = () => {
 
 export default function DashboardPage(props) {
   return (
-    <div className="mx-36">
+    <div className="mx-36 m-12">
       <div className="text-5xl font-medium mb-20">Dashboard</div>
       <div className="flex justify-between items-center mb-6 px-3 mx-10 pr-[54px]">
         <div className="basis-1/4 grow-0 font-semibold text-xl">

@@ -44,7 +44,7 @@ export default function CreateCampaignPage(props) {
   );
 
   return (
-    <div className="mx-36">
+    <div className="mx-36 m-12">
       <div className="text-5xl mb-10">Create Campaign</div>
       <div className="flex items-center mb-5">
         <div className="text-xl font-bold">Employees</div>
