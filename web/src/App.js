@@ -10,7 +10,7 @@ function App() {
   return (
     <BrowserRouter>
       <div>
-        <Navbar userHidden={true} />
+        <Navbar signedIn={false} userHidden={false} />
         <div className="m-12">
           <Routes>
             <Route path="/" element={<LandingPage />} />

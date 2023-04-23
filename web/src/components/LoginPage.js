@@ -1,5 +1,5 @@
 import InputField from "./InputField.js";
-import { ReactComponent as Right } from "../assets/right.svg";
+import Button from "./Button.js";
 import { useRef } from "react";
 
 export default function LoginPage(props) {
@@ -28,12 +28,9 @@ export default function LoginPage(props) {
           }}
         />
       </div>
-      <button
-        className="flex items-center justify-center gap-2 mt-20 bg-gray-900 text-white rounded-lg h-10 w-32 shadow-lg"
-        onClick={login}
-      >
-        Continue <Right className="h-4 w-4 fill-current" />
-      </button>
+      <div className="mt-20 w-32">
+        <Button text="Continue" onClick={login} arrow={true} />
+      </div>
     </div>
   );
 }
