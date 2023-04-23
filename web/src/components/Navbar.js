@@ -1,4 +1,5 @@
 import { ReactComponent as Logo } from "../assets/logo.svg";
+import { ReactComponent as Logout } from "../assets/logout.svg";
 import { ReactComponent as Account } from "../assets/account.svg";
 import { useLocation } from "react-router-dom";
 
@@ -20,7 +21,7 @@ export default function Navbar(props) {
         )}
         {userHidden ? null : (
           <div className="flex gap-3 absolute top-0 right-0 justify-between items-center hover:underline cursor-pointer">
-            {signedIn ? localStorage.getItem("email_LS") : "Sign In"}
+            {signedIn ? <div><Logout/>{localStorage.getItem("email_LS")}</div> : "Sign In"}
             <Account className="w-10 h-10" />
           </div>
         )}
