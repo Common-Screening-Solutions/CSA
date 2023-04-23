@@ -9,7 +9,8 @@ const db = new Database("campaign-data.sqlite", { create: true });
 db.run(`CREATE TABLE IF NOT EXISTS campaigns (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   email TEXT,
-  pass_hash TEXT
+  pass_hash TEXT,
+  UNIQUE(email, pass_hash)
 );`);
 
 db.run(`
@@ -64,7 +65,7 @@ app.post('/api/post-new-campaign', function (req, res) {
 
     const id_query = db.query(`SELECT MAX(ID) FROM campaigns;`);
     const id = id_query.get()["MAX(ID)"];
-    console.log(id)
+    // console.log(id)
 
 
     req.body.subjects.forEach(subject => {
