@@ -51,7 +51,18 @@ export default function DashboardPage(props) {
   }
   // }
 
-  if(data != null){
+  console.log(data)
+  if (data == null) { return <div></div>}
+  else if(data == {}){
+    return (
+        <div className="mx-36 m-12">
+          <div className="text-5xl font-medium mb-20">Dashboard</div>
+          <div className="flex justify-between items-center mb-6 px-3 mx-10 pr-[54px]" onClick={createCampaign}>
+            Create a campaign
+          </div>
+        </div> 
+    )
+  } else {
     return (
       <div className="mx-36 m-12">
         <div className="text-5xl font-medium mb-20">Dashboard</div>
@@ -66,15 +77,6 @@ export default function DashboardPage(props) {
         <EmployeeList data={data}/>
       </div>
     );
-  } else {
-    return (
-        <div className="mx-36 m-12">
-          <div className="text-5xl font-medium mb-20">Dashboard</div>
-          <div className="flex justify-between items-center mb-6 px-3 mx-10 pr-[54px]" onClick={createCampaign}>
-            Create a campaign
-          </div>
-        </div> 
-    )
   }
 }
 

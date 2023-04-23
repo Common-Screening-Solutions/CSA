@@ -28,7 +28,9 @@ export default function CreateCampaignPage(props) {
     setEmployees(newEmployees);
   }
 
-  function submit() {}
+  function submit() {
+    
+  }
 
   const IntervalButton = ({ text }) => (
     <div
