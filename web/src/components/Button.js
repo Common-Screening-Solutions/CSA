@@ -8,7 +8,7 @@ export default function Button({
 }) {
   return (
     <div
-      className={`${height} flex items-center justify-center gap-2 bg-gray-900 text-white rounded-lg shadow-lg select-none cursor-pointer`}
+      className={`${height} flex items-center justify-center gap-2 bg-gray-900 text-white rounded-lg shadow-lg select-none cursor-pointer exp-hover`}
       onClick={onClick}
     >
       {text}

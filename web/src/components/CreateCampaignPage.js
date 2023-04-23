@@ -4,7 +4,7 @@ import { ReactComponent as Delete } from "../assets/delete.svg";
 import Dropdown from "./Dropdown.js";
 import InputField from "./InputField.js";
 import Button from "./Button.js";
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 export default function CreateCampaignPage(props) {
   const [employees, setEmployees] = useState([]);
@@ -34,18 +34,16 @@ export default function CreateCampaignPage(props) {
     const body = JSON.stringify({
       email: localStorage.getItem("email_LS"),
       ph: localStorage.getItem("password_LS"),
-      subjects: 
-        employees.map(emp => {
-          return {
-            name: emp.name,
-            email: emp.email,
-            phone: emp.phone
-          }
-        })
-      
+      subjects: employees.map((emp) => {
+        return {
+          name: emp.name,
+          email: emp.email,
+          phone: emp.phone,
+        };
+      }),
     });
 
-    console.log(body)
+    console.log(body);
 
     fetch(
       "https://better-tables-wear-12-38-208-106.loca.lt/api/post-new-campaign",
@@ -60,9 +58,9 @@ export default function CreateCampaignPage(props) {
     );
 
     setTimeout(() => {
-      document.location.href = document.location.href
+      document.location.href = document.location.href;
     }, 1000);
-    navigate('/dashboard')
+    navigate("/dashboard");
   }
 
   const IntervalButton = ({ text }) => (
@@ -119,7 +117,7 @@ export default function CreateCampaignPage(props) {
           </div>
         ))}
         <div
-          className="ml-6 flex gap-1 items-center text-sm bg-slate-200 w-fit p-2 pl-0 pr-5 rounded-md cursor-pointer"
+          className="ml-6 flex gap-1 items-center text-sm bg-slate-200 w-fit p-2 pl-0 pr-5 rounded-md cursor-pointer hover:bg-slate-300 transition-all"
           onClick={newEmployee}
         >
           <Add className="h-6" />
