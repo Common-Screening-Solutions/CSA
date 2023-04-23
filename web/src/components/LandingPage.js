@@ -2,7 +2,9 @@ import landingImg from "../assets/landing.png";
 import Button from "./Button.js";
 
 export default function LandingPage(props) {
-  function getStarted() {}
+  function getStarted() {
+    window.location.href = "/dashboard"
+  }
 
   return (
     <div className="absolute top-16 left-1/2 -translate-x-1/2 flex flex-col items-center">
@@ -12,7 +14,7 @@ export default function LandingPage(props) {
       </div>
       <img src={landingImg} className="h-96 select-none fade-up opacity-0" draggable={false} />
       <div className="mt-9 w-40 fade-up-d opacity-0">
-        <Button text="Get Started" onClick={getStarted} arrow={true} />
+        <Button text="Get Started" to="/dashboard" arrow={true} />
       </div>
     </div>
   );
