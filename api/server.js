@@ -20,6 +20,7 @@ CREATE TABLE  IF NOT EXISTS screening_subjects (
   email TEXT,
   name TEXT, 
   pin_number TEXT,
+  screen_status TEXT,
   FOREIGN KEY (campaign_id) REFERENCES campaigns(id)
 );`);
 
@@ -55,6 +56,8 @@ app.get('/api/get-campaign-data', function (req, res) {
 
   const campaign_query = db.query(`SELECT * FROM campaigns WHERE email='${req.query.email}' AND pass_hash = '${req.query.ph}'`);
   const campaign = campaign_query.get();
+
+  console.log(req.query)
 
   if(campaign !== null) {
     const subjects_query = db.query(`SELECT * FROM screening_subjects`);
