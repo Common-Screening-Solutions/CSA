@@ -79,7 +79,7 @@ app.get('/api/get-campaign-data', function (req, res) {
     // console.log(subjects)
     res.send({subjects,campaign}).status(200);
   } else {
-    res.send({}).status(404);
+    res.send({"error":"not found"}).status(404);
   }
 });
 
