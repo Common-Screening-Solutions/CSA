@@ -12,6 +12,13 @@
         scrollbar-width: none;
     }
 
+    .fade-left {
+        animation-name: fade-left;
+        animation-duration: 1s;
+        animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+        animation-fill-mode: forwards;
+    }
+
     .fade-right {
         animation-name: fade-right;
         animation-duration: 1s;
@@ -40,6 +47,17 @@
 
     .exp-hover:hover {
         transform: scale(1.03);
+    }
+
+    @keyframes fade-left {
+        from {
+            translate: 100px;
+            opacity: 0;
+        }
+        to {
+            translate: 0px;
+            opacity: 1;
+        }
     }
 
     @keyframes fade-right {
