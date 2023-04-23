@@ -4,11 +4,13 @@ import { ReactComponent as Delete } from "../assets/delete.svg";
 import Dropdown from "./Dropdown.js";
 import InputField from "./InputField.js";
 import Button from "./Button.js";
+import {useNavigate} from "react-router-dom"
 
 export default function CreateCampaignPage(props) {
   const [employees, setEmployees] = useState([]);
   const [interval, setInterval] = useState("Daily");
   const [intervalDay, setIntervalDay] = useState("Monday");
+  const navigate = useNavigate();
 
   function newEmployee() {
     const newEmployees = [...employees];
@@ -56,6 +58,8 @@ export default function CreateCampaignPage(props) {
         body: body,
       }
     );
+
+    navigate('/dashboard')
   }
 
   const IntervalButton = ({ text }) => (
