@@ -33,6 +33,14 @@
         animation-delay: 100ms;
     }
 
+    .exp-hover {
+        transition: 0.1s ease-out;
+    }
+
+    .exp-hover:hover {
+        transform: scale(1.03);
+    }
+
     @keyframes fade-right {
         from {
             translate: -100px;
