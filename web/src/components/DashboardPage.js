@@ -38,7 +38,7 @@ function EmployeeList(props) {
 
   return (
     <div className="flex flex-col gap-0 m-10">
-      <div className="flex justify-between items-center mb-6">
+      <div className="flex justify-between items-center mb-6 px-3">
         <div className="basis-1/4 grow-0 font-semibold text-xl">
           Employees - <span className="font-thin">{employees.length}</span>
         </div>
@@ -47,7 +47,7 @@ function EmployeeList(props) {
         <div className="basis-1/12 grow-0 text-sm">Status</div>
       </div>
       {employees.map((e) => (
-        <div className="flex items-center justify-between py-7 px-3 rounded-2xl transition-all cursor-pointer hover:bg-slate-200 hover:scale-105">
+        <div className="flex items-center justify-between py-7 px-3 rounded-2xl transition-all hover:bg-slate-200">
           <div className="basis-1/4 grow-0">
             <div className="flex gap-3 items-center font-bold">
               <Circle className="h-10" />
