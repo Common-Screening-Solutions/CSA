@@ -1,4 +1,5 @@
 import { Database } from "bun:sqlite";
+import { get } from "http";
 require('dotenv').config();
 
 const express = require('express');
@@ -120,7 +121,17 @@ app.post('/api/post-new-campaign', function (req, res) {
 
 // POST endpoint for submitting your screening results
 app.post('/api/submit-screen-results', function (req, res) {
+  const pin = req.body.pin;
+  const name = req.body.name;
+  const status = req.body.status;
+  
+  const get_id = db.query(`SELECT ID FROM screening_subjects WHERE name = '${name}' AND pin_number = ${pin};`);
+  const id = get_id.get().id;
+  
+  console.log(pin, name, status, id)
+  db.run(`UPDATE screening_subjects SET screen_status = '${status}' WHERE ID = ${id}`);
 
+  res.send().status(200);
 });
 
 // Start the server
