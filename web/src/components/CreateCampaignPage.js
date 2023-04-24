@@ -7,7 +7,9 @@ import Button from "./Button.js";
 import { useNavigate } from "react-router-dom";
 
 export default function CreateCampaignPage(props) {
-  const [employees, setEmployees] = useState([]);
+  const [employees, setEmployees] = useState([
+    { name: "", email: "", phone: "" },
+  ]);
   const [interval, setInterval] = useState("Daily");
   const [intervalDay, setIntervalDay] = useState("Monday");
   const navigate = useNavigate();
@@ -43,8 +45,6 @@ export default function CreateCampaignPage(props) {
       }),
     });
 
-    console.log(body);
-
     fetch(
       "https://better-tables-wear-12-38-208-106.loca.lt/api/post-new-campaign",
       {
@@ -66,7 +66,9 @@ export default function CreateCampaignPage(props) {
   const IntervalButton = ({ text }) => (
     <div
       className={`h-8 w-1/2 flex items-center justify-center text-sm ${
-        interval === text ? "bg-gray-900 text-white" : "text-gray-900"
+        interval === text
+          ? "bg-gray-900 text-white"
+          : "text-gray-900 cursor-pointer"
       }`}
       onClick={() => {
         setInterval(text);
@@ -85,7 +87,7 @@ export default function CreateCampaignPage(props) {
           Or import from excel...
         </div>
       </div>
-      <div className="flex flex-col gap-5 mb-12">
+      <div className="flex flex-col gap-5 mb-4 max-h-48 overflow-y-scroll">
         {employees.map((e, i) => (
           <div className="flex items-center gap-4">
             <div className="w-6">{i + 1}</div>
@@ -113,46 +115,51 @@ export default function CreateCampaignPage(props) {
                 }}
               />
             </div>
-            <Delete className="h-6" onClick={() => deleteEmployee(i)} />
-          </div>
-        ))}
-        <div
-          className="ml-6 flex gap-1 items-center text-sm bg-slate-200 w-fit p-2 pl-0 pr-5 rounded-md cursor-pointer hover:bg-slate-300 transition-all"
-          onClick={newEmployee}
-        >
-          <Add className="h-6" />
-          New
-        </div>
-      </div>
-      <div className="text-xl font-bold mb-5 cursor-default">
-        Screening Interval
-      </div>
-      <div className="flex items-center">
-        <div className="flex rounded-lg overflow-hidden w-48 border-2 border-current text-gray-900 cursor-default">
-          <IntervalButton text="Daily" />
-          <IntervalButton text="Weekly" />
-        </div>
-        {interval === "Weekly" ? (
-          <div className="flex items-center">
-            <div className="ml-8 text-gray-600 text-sm">Every:</div>
-            <Dropdown
-              width="w-30"
-              value={intervalDay}
-              setValue={setIntervalDay}
-              menuItems={[
-                "Monday",
-                "Tuesday",
-                "Wednesday",
-                "Thursday",
-                "Friday",
-                "Saturday",
-                "Sunday",
-              ]}
+            <Delete
+              className="h-6 cursor-pointer"
+              onClick={() => deleteEmployee(i)}
             />
           </div>
-        ) : null}
+        ))}
       </div>
-      <div className="absolute bottom-12 w-32">
+      <div
+        className="ml-6 flex gap-1 items-center text-sm bg-slate-200 w-fit p-2 pl-0 pr-5 rounded-md cursor-pointer hover:bg-slate-300 transition-all"
+        onClick={newEmployee}
+      >
+        <Add className="h-6" />
+        New
+      </div>
+      <div className="absolute bottom-12">
+        <div className="text-xl font-bold mb-5 cursor-default">
+          Screening Interval
+        </div>
+        <div className="flex items-center">
+          <div className="flex rounded-lg overflow-hidden w-48 border-2 border-current text-gray-900 cursor-default">
+            <IntervalButton text="Daily" />
+            <IntervalButton text="Weekly" />
+          </div>
+          {interval === "Weekly" ? (
+            <div className="flex items-center">
+              <div className="ml-8 text-gray-600 text-sm">Every:</div>
+              <Dropdown
+                width="w-30"
+                value={intervalDay}
+                setValue={setIntervalDay}
+                menuItems={[
+                  "Monday",
+                  "Tuesday",
+                  "Wednesday",
+                  "Thursday",
+                  "Friday",
+                  "Saturday",
+                  "Sunday",
+                ]}
+              />
+            </div>
+          ) : null}
+        </div>
+      </div>
+      <div className="absolute bottom-12 right-36 w-32">
         <Button text="Create" onClick={submit} />
       </div>
     </div>
