@@ -33,12 +33,26 @@
         animation-fill-mode: forwards;
     }
 
-    .fade-up-d {
-        animation-name: fade-up;
+    .fade-down {
+        animation-name: fade-down;
         animation-duration: 1s;
         animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
         animation-fill-mode: forwards;
-        animation-delay: 100ms;
+    }
+
+    .fade-in {
+        animation-name: fade-in;
+        animation-duration: 1s;
+        animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+        animation-fill-mode: forwards;
+    }
+
+    .fade-up-d {
+        animation-name: fade-up-less;
+        animation-duration: 1s;
+        animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+        animation-fill-mode: forwards;
+        animation-delay: 200ms;
     }
 
     .exp-hover {
@@ -78,6 +92,39 @@
         }
         to {
             translate: 0px;
+            opacity: 1;
+        }
+    }
+
+    @keyframes fade-up-less {
+        from {
+            translate: 0px 50px;
+            opacity: 0;
+        }
+        to {
+            translate: 0px;
+            opacity: 1;
+        }
+    }
+
+    @keyframes fade-down {
+        from {
+            translate: 0px -100px;
+            opacity: 0;
+        }
+        to {
+            translate: 0px;
+            opacity: 1;
+        }
+    }
+
+    @keyframes fade-in {
+        from {
+            /* translate: 0px -100px; */
+            opacity: 0;
+        }
+        to {
+            /* translate: 0px; */
             opacity: 1;
         }
     }

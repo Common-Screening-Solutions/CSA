@@ -14,7 +14,7 @@ export default function LandingPage(props) {
   return (
     <div className="">
       <div className="absolute top-16 left-1/2 -translate-x-1/2 flex flex-col items-center">
-        <div className="text-5xl text-center leading-relaxed cursor-default">
+        <div className="text-5xl text-center leading-relaxed cursor-default fade-in">
           Digital Health Screening <br />
           Done Right
         </div>

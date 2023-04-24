@@ -109,6 +109,8 @@ app.post("/api/post-new-campaign", function (req, res) {
       VALUES (${id}, '${subject.name}', '${subject.phone}', '${subject.email}', '${pin}', "none");
       `);
 
+      console.log(subject, pin)
+
       send_sms(
         `+1${subject.phone}`,
         `Hello ${subject.name}\nSign into CSA for Health Screening\nYour PIN is ${pin}\n\nhttps://old-views-like-12-38-208-106.loca.lt/form`
