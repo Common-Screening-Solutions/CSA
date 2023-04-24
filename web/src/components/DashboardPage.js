@@ -57,8 +57,8 @@ export default function DashboardPage(props) {
   else if(data.error){
     return (
         <div className="mx-36 m-12">
-          <div className="text-5xl font-medium mb-1">Dashboard</div>
-          <div className="mx-1 mb-20 text-slate-700">No campaign found</div>
+          <div className="text-5xl font-medium mb-3">Dashboard</div>
+          <div className="mx-1 mb-20 text-slate-700">No campaign found. Create one below</div>
           <div className="flex justify-between items-center mb-6 px-3 py-5 mx-1 bg-slate-200 w-fit text-center rounded-md drop-shadow-lg cursor-pointer hover:scale-105 transition-all" onClick={createCampaign}>
             <Add/>Create a campaign
           </div>
@@ -86,7 +86,7 @@ function EmployeeList({data}) {
   const employees = data.subjects;
   // console.log(data)
   return (
-    <div className="flex flex-col gap-0 m-10 max-h-[46vh] overflow-y-scroll overflow-x-hidden">
+    <div className="flex flex-col gap-0 m-10 max-h-[46.5vh] overflow-y-scroll overflow-x-hidden">
       {employees.map((e) => (
         <div className="flex items-center justify-between py-7 px-3 pr-12 rounded-l-2xl transition-all hover:bg-slate-100">
           <div className="basis-1/4 grow-0 select-none">
